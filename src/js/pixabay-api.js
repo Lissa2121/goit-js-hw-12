@@ -1,23 +1,17 @@
-const params = {
+import axios from "axios";
+
+export const searchParams = {
     key: "45012251-1fd54445ad7ef6677a1cc96fc",
     q: "",
     imageType: "photo",
     orientation: "horizontal",
     safesearch: true,
+    page: 1,
+    per_page: 15,
+    maxPage: 0,
 };
 
-export function generateHttpsQuery(formValue) {
-    params.q = formValue;
-    const queryString = new URLSearchParams(params).toString();
-    return `https://pixabay.com/api/?${queryString}`;
-}
-
-export function fetchPictures(httpsQuery) {
-    return fetch(httpsQuery)
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error(response.status);
-            }
-            return response.json();
-        })
+export async function getPictures() {
+    const response = await axios.get("https://pixabay.com/api/", {params: searchParams});
+        return response.data;
 }
