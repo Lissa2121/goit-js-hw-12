@@ -85,6 +85,7 @@
 .load-more-button {
     border: transparent;
     border-radius: 8px;
+    margin-top: 10px;
     padding: 8px 16px;
     width: 125px;
     height: 40px;
